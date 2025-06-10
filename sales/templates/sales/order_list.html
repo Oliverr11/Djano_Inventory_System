@@ -1,0 +1,41 @@
+{% extends 'base.html'%} {% block title %}Sales{% endblock title%} {% block content %}
+<h1 class="text-center">Sales</h1>
+<a
+  href="{%url 'order_create'%}"
+  class="mt-5 btn btn-primary btn-lg text-white text-decoration-none"
+>
+  <i class="fa-solid fa-plus"></i>
+</a>
+<table class="table mt-3 table-striped">
+  <thead>
+    <tr>
+      <th class="text-bg-primary">Id</th>
+      <th class="text-bg-primary">Customer</th>
+      <th class="text-bg-primary">Employee</th>
+      <th class="text-bg-primary">Total</th>
+      <th class="text-bg-primary">Paid</th>
+      <th class="text-bg-primary">Remain</th>
+      <th class="text-bg-primary">Created At</th>
+      <th class="text-bg-primary">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <th scope="row">{{order.id}}</th>
+      <td>{{ order.customer.name }}</td>
+      <td>{{ order.employee.name }}</td>
+      <td>{{ order.total_amount }}​ ៛</td>
+      <td>{{ order.total_paid }} ៛</td>
+      <td>{{ order.total_remain }} ៛</td>
+      <td>{{ order.created_at|date:"Y-m-d H:i" }}</td>
+      <td>
+        <a href="{% url 'order_detail' order.id %}"
+          ><i class="fa-solid fa-eye"></i
+        ></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

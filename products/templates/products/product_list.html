@@ -1,0 +1,42 @@
+{% extends 'base.html'%} {% block add %} {% endblock add %} {% block content %}
+  <h1 class="text-center">Products</h1>
+<a
+  href="{%url 'product_add'%}"
+  class="mt-5 btn btn-primary btn-lg text-white text-decoration-none"
+>
+  <i class="fa-solid fa-plus"></i>
+</a>
+<table class="table mt-3 table-striped">
+  <thead>
+    <tr>
+      <th class="text-white bg-primary" scope="col">Id</th>
+      <th class="text-white bg-primary" scope="col">Name</th>
+      <th class="text-white bg-primary" scope="col">Category</th>
+      <th class="text-white bg-primary" scope="col">CostPrice</th>
+      <th class="text-white bg-primary" scope="col">SellingPrice</th>
+      <th class="text-white bg-primary" scope="col">Unit</th>
+      <th class="text-white bg-primary" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <th scope="row">{{product.id}}</th>
+      <td>{{product.name}}</td>
+      <td>{{product.category.name}}</td>
+      <td>{{product.cost_price}}</td>
+      <td>{{product.selling_price}}</td>
+      <td>{{product.unit}}</td>
+      <td>
+        <a href="{% url 'product_edit' product.id %}"
+          ><i class="fa-solid fa-pen-to-square"></i
+        ></a>
+        <a class="m-3" href="{% url 'product_delete' product.id %}"
+          ><i class="fa-solid fa-trash"></i
+        ></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

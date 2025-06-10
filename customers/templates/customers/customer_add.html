@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <h1 >Add Customer</h1>
+    <form method="post" class="form-container">
+      {% csrf_token %}
+        {{form.as_p}}
+      <div class="container d-flex justify-content-center">
+        <button  class=" button-link m-3  text-bg-primary" type="submit">Save</button>
+        <a class=" button-link m-3 btn text-bg-danger" href="{% url 'customer_list' %}"
+          >Cancle</a
+        >
+      </div>
+    </form>
+{% endblock content %}
+  

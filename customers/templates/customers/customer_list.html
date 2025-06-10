@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block title %} Customers {% endblock title %} {% block add %}
+
+{% endblock add %} {% block content %}
+<h1 class="text-center">Customers</h1>
+<a
+  href="{% url 'customer_add' %}"
+  class="mt-5 btn btn-primary btn-lg text-white text-decoration-none"
+>
+  <i class="fa-solid fa-plus"></i>
+</a>
+<table class="table mt-3 table-striped">
+  <thead>
+    <tr>
+      <th class="text-bg-primary" scope="col">ID</th>
+      <th class="text-bg-primary" scope="col">Name</th>
+      <th class="text-bg-primary" scope="col">Phone</th>
+      <th class="text-bg-primary" scope="col">Addres</th>
+      <th class="text-bg-primary" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in customers %}
+    <tr>
+      <th scope="row">{{customer.id}}</th>
+      <td>{{customer.name}}</td>
+      <td>{{customer.phone}}</td>
+      <td>{{customer.address}}</td>
+      <td>
+        <a href="{% url 'customer_edit' customer.id %}"
+          ><i class="fa-solid fa-pen-to-square"></i
+        ></a>
+
+        <a class="m-3" href="{% url 'customer_delete' customer.id %}"
+          ><i class="fa-solid fa-trash"></i
+        ></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

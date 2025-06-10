@@ -1,0 +1,34 @@
+{% extends 'base.html'%} {% block title %}Products{% endblock title%} {% block content %}
+  <h1 class="text-center">Categories</h1>
+<a
+  href="{%url 'category_create'%}"
+  class="mt-5 btn btn-primary btn-lg text-white text-decoration-none"
+>
+  <i class="fa-solid fa-plus"></i>
+</a>
+<table class="table mt-3 table-striped">
+  <thead>
+    <tr>
+      <th class="bg-primary text-white" scope="col">Id</th>
+      <th class="bg-primary text-white" scope="col">Name</th>
+      <th class="bg-primary text-white" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for category in categories %}
+    <tr>
+      <th scope="row">{{category.id}}</th>
+      <td>{{category.name}}</td>
+      <td>
+        <a href="{% url 'category_edit' category.id %}"
+          ><i class="fa-solid fa-pen-to-square"></i
+        ></a>
+        <a href="{% url 'category_delete' category.id %}" class="m-3"
+          ><i class="fa-solid fa-trash"></i
+        ></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

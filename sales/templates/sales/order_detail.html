@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block title %} Order Details {% endblock title %}
+{% block content %}
+<a class="mt-5 btn text-white bg-danger" href="{% url 'order_list' %}"
+  ><i class="fa-solid fa-arrow-right-from-bracket"></i
+></a>
+<h1 class="text-center">Order Details</h1>
+
+<div id="detail" class="container">
+  <div><strong>Order ID:</strong> <span>{{ order.id }}</span></div>
+  <div><strong>Customer:</strong> <span>{{ order.customer.name }}</span></div>
+  <div><strong>Employee:</strong> <span>{{ order.employee.name }}</span></div>
+  <div>
+    <strong>Total Amount:</strong> <span>${{ order.total_amount }}</span>
+  </div>
+  <div><strong>Total Paid:</strong> <span>${{ order.total_paid }}</span></div>
+  <div>
+    <strong>Total Remain:</strong> <span>${{ order.total_remain }}</span>
+  </div>
+  <div><strong>Created At:</strong> <span>{{ order.created_at }}</span></div>
+</div>
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th class="bg-primary text-white" scope="col">Product</th>
+      <th class="bg-primary text-white" scope="col">Quantity</th>
+      <th class="bg-primary text-white" scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in order.items.all %}
+    <tr>
+      <td>{{ item.product.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>${{ item.total_price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

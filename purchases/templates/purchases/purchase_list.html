@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block title %}Employees{% endblock title %} {% block content %}
+<h1 class="text-center">Purchases</h1>
+<a
+  href="{% url 'create_purchase' %}"
+  class="mt-5 btn btn-primary btn-lg text-white text-decoration-none"
+>
+  <i class="fa-solid fa-plus"></i>
+</a>
+<table class="table mt-3 table-striped">
+  <thead>
+    <tr id="purchase">
+      <th class="text-bg-primary">Id</th>
+      <th class="text-bg-primary">Supplier</th>
+      <th class="text-bg-primary">Employee</th>
+      <th class="text-bg-primary">Total</th>
+      <th class="text-bg-primary">Paid</th>
+      <th class="text-bg-primary">Remain</th>
+      <th class="text-bg-primary">Created At</th>
+      <th class="text-bg-primary">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for purchase in purchases %}
+    <tr>
+      <td scope="row">{{ purchase.id }}</td>
+      <td>{{ purchase.supplier.name }}</td>
+      <td>{{ purchase.employee.name }}</td>
+      <td>${{ purchase.total_amount }}</td>
+      <td>${{ purchase.total_paid }}</td>
+      <td>${{ purchase.total_remain }}</td>
+      <td>{{ purchase.created_at|date:"Y-m-d H:i" }}</td>
+      <td>
+        <a href="{% url 'purchase_detail' purchase.id %}"
+          ><i class="fa-solid fa-eye"></i
+        ></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

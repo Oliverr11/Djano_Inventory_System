@@ -1,0 +1,41 @@
+{% extends 'base.html' %}  {% block content%}
+<h1 class="text-center">Employees</h1>
+<a
+  href="{% url 'employees_create' %}"
+  class="mt-5 btn btn-primary btn-lg text-white text-decoration-none"
+>
+  <i class="fa-solid fa-plus"></i>
+</a>
+<table class="table mt-3 table-striped">
+  <thead>
+    <tr>
+      <th class="text-bg-primary" scope="col">ID</th>
+      <th class="text-bg-primary" scope="col">Name</th>
+      <th class="text-bg-primary" scope="col">Age</th>
+      <th class="text-bg-primary" scope="col">Phone</th>
+      <th class="text-bg-primary" scope="col">Address</th>
+      <th class="text-bg-primary" scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for emp in employees %}
+    <tr>
+      <th scope="row">{{emp.id}}</th>
+      <td>{{emp.name}}</td>
+      <td>{{emp.age}}</td>
+      <td>{{emp.phone}}</td>
+      <td>{{emp.address}}</td>
+
+      <td>
+        <a href="{% url 'employees_edit' emp.id %}"
+          ><i class="fa-solid fa-pen-to-square"></i
+        ></a>
+        <a class="m-3" href="{% url 'employees_delete' emp.id %}"
+          ><i class="fa-solid fa-trash"></i
+        ></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

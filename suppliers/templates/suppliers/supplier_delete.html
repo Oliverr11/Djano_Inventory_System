@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+<h1 class="text-center"> Do you want to delete supplier : {{ supplier.name}} </h1>
+    <form class="d-flex justify-content-center" method="post">
+      {% csrf_token %}
+      <button class="m-3 btn text-bg-primary" type="submit">Confirm</button>
+      <a class="m-3 btn text-bg-danger" href="{% url 'supplier_list' %}"
+        >Cancel</a
+      >
+    </form>
+{% endblock content %}
+  
